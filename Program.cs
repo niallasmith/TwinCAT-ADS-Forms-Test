@@ -17,7 +17,7 @@ public class Program
     static void Main()
     {
         //PLC myPLC = new PLC(Convert.ToString(AmsNetId.Local),851);
-
+        Application.SetHighDpiMode(HighDpiMode.SystemAware);
         ApplicationConfiguration.Initialize();
         Application.Run(form1);
     }    
