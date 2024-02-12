@@ -17,14 +17,24 @@ public partial class Form1
     private void newSetPos_Click(object sender, EventArgs e) // new set position button pressed
     {
         
-        if (ncAxis is null)
+        if (ncAxis is null) // return if ncAxis has not been setup yet
         {
             MessageBox.Show("ncAxis is null, ensure initialistion");
             return;
         }
-        // input validation TODO
+
+        try // try convert, if cannot (due to wrong type, not in range), display message and return
+        {
+            ushort value = Convert.ToUInt16(setPosText.Text);
+            ncAxis.WriteValue1(Program.myPLC, value);
+        }
+        catch
+        {
+            MessageBox.Show("value out of range");
+            return;
+        }
         //MessageBox.Show("New position set event handler");
-        ncAxis.WriteValue1(Program.myPLC, Convert.ToUInt16(setPosText.Text));
+        
     }
 
     private void newVelCmd_Click(object sender, EventArgs e) // new velocity value button pressed
@@ -35,9 +45,18 @@ public partial class Form1
             return;
         }
 
-        // input validation TODO
+        try
+        {
+            ushort value = Convert.ToUInt16(setVelText.Text);
+            ncAxis.WriteValue2(Program.myPLC, value);
+        }
+        catch
+        {
+            MessageBox.Show("value out of range");
+            return;
+        }
+
         //MessageBox.Show("Velocity set event handler");
-        ncAxis.WriteValue2(Program.myPLC, Convert.ToUInt16(setVelText.Text));
     }
 
     private void checkBox_Click(object sender, EventArgs e) // check box clicked
@@ -50,13 +69,10 @@ public partial class Form1
 
         if (checkBOX.Checked)
         {
-            //myClient.WriteAny(bABCtestHandle,true);
-            //myPLC
             //MessageBox.Show("checked");
             ncAxis.WriteValue3(Program.myPLC, true);
 
         } else {
-            //myClient.WriteAny(bABCtestHandle,false);
             //MessageBox.Show("unchecked");
             ncAxis.WriteValue3(Program.myPLC, false);
         }
