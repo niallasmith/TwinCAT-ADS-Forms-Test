@@ -3,6 +3,8 @@ namespace TwinCAT_ADS_Forms_Test;
 public partial class Form1
 {
     public NCAxis ncAxis;
+    public ushort readPosValue;
+    public ushort readVelValue;
     //public Program myPlc;
     private void initButton_Click(object sender, EventArgs e)
     {
@@ -56,6 +58,19 @@ public partial class Form1
             //MessageBox.Show("unchecked");
             ncAxis.WriteValue3(Program.myPLC, false);
         }
+    }
+
+    private void timer1_Tick(object sender, EventArgs e)
+    {
+        if (ncAxis is null)
+        {
+            //MessageBox.Show("ncAxis is null, ensure initialistion");
+            return;
+        }
+        
+        readPosValue = ncAxis.ReadValue1(Program.myPLC);
+        readVelValue = ncAxis.ReadValue2(Program.myPLC);
+        RefreshData();
     }
 
 }

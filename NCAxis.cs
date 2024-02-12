@@ -1,6 +1,8 @@
 using TwinCAT.PlcOpen;
 using TwinCAT.Ads;
 using System.Net.Sockets;
+using System.DirectoryServices;
+using System.Reflection.Metadata.Ecma335;
 
 namespace TwinCAT_ADS_Forms_Test;
 
@@ -52,6 +54,32 @@ public class NCAxis
     public void WriteValue3(PLC plc, bool value)
     {
         plc.TcADS.WriteAny(btestValue3Handle,value);
+    }
+
+    public ushort ReadValue1(PLC plc)
+    {
+        try
+        {
+            ushort resp = plc.TcADS.ReadAny<ushort>(ftestValue1Handle);
+            return resp;
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+
+    public ushort ReadValue2(PLC plc)
+    {
+        try
+        {
+            ushort resp = plc.TcADS.ReadAny<ushort>(ftestValue2Handle);
+            return resp;
+        }
+        catch
+        {
+            return 0;
+        }
     }
 
 }
