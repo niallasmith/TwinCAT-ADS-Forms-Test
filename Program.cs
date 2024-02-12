@@ -12,6 +12,7 @@ public class Program
     //[STAThread]
 
     public static PLC myPLC = new PLC(Convert.ToString(AmsNetId.Local),851);
+    //public static myPLC;
     public uint bTestABChandle;
     public static Form1 form1 = new Form1();
     static void Main()

@@ -5,6 +5,7 @@ using TwinCAT.Ads;
 
 public class PLC 
 {
+    /*
     private AdsClient _tcADS = new AdsClient();
     public AdsClient TcADS
     {
@@ -32,22 +33,28 @@ public class PLC
         get { return _port; }
         set { _port = value; }
     }
+    */
+
+    public AdsClient TcADS = new AdsClient();
     
     public PLC(string AMSID, int port)
     {
-            ID = AMSID;
-            Port = port;
+            //ID = AMSID;
+            //Port = port;
             try
             {
-                TcADS.Connect(ID, port);
-                uint bTestABChandle = TcADS.CreateVariableHandle("GVL_Vars.testABC");
-                System.Console.WriteLine("created variable handles successfully");
+                TcADS.Connect(AMSID, port);
+                //uint bTestABChandle = TcADS.CreateVariableHandle("GVL_Vars.testABC");
+                //System.Console.WriteLine("created variable handles successfully");
             }
             catch
             {
+                System.Console.WriteLine("PLC did not connect");
                 //Do Nothing - Usually means invalid AMS NET ID format
             }      
     }
+
+    /*
     
     public bool checkConnection()
     {
@@ -91,4 +98,5 @@ public class PLC
         };
         return checkAdsState();
     }
+    */
 }

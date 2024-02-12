@@ -1,10 +1,12 @@
 using TwinCAT.PlcOpen;
+using TwinCAT.Ads;
+using System.Net.Sockets;
 
 namespace TwinCAT_ADS_Forms_Test;
 
 public class NCAxis
 {
-    public Program myPlc;
+    //public PLC myPlc;
     public uint ftestValue1Handle;
     public uint ftestValue2Handle;
     public uint btestValue3Handle;
@@ -34,6 +36,7 @@ public class NCAxis
         {
             System.Console.WriteLine("unsuccessful in creating variable handles");
         }
+
     }
 
     public void WriteValue1(PLC plc, ushort value)
@@ -41,12 +44,12 @@ public class NCAxis
         plc.TcADS.WriteAny(ftestValue1Handle,value);
     }
 
-        public void WriteValue2(PLC plc, ushort value)
+    public void WriteValue2(PLC plc, ushort value)
     {
         plc.TcADS.WriteAny(ftestValue2Handle,value);
     }
 
-        public void WriteValue3(PLC plc, bool value)
+    public void WriteValue3(PLC plc, bool value)
     {
         plc.TcADS.WriteAny(btestValue3Handle,value);
     }
