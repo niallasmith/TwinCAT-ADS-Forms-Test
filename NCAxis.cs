@@ -8,8 +8,7 @@ namespace TwinCAT_ADS_Forms_Test;
 
 public class NCAxis
 {
-    //public PLC myPlc;
-    public uint ftestValue1Handle;
+    public uint ftestValue1Handle;  // handles for PLC global variables
     public uint ftestValue2Handle;
     public uint btestValue3Handle;
 
@@ -20,12 +19,12 @@ public class NCAxis
         set { _axisID = value; }
     }
 
-    public NCAxis(PLC plc)
+    public NCAxis(PLC plc)  // NCAxis constructor
     {
         UpdateAxisInstance(plc);
     }
 
-    public void UpdateAxisInstance(PLC plc)
+    public void UpdateAxisInstance(PLC plc) // create variable handles
     {
         try
         {
@@ -41,7 +40,7 @@ public class NCAxis
 
     }
 
-    public void WriteValue1(PLC plc, ushort value)
+    public void WriteValue1(PLC plc, ushort value) // write value to PLC
     {
         plc.TcADS.WriteAny(ftestValue1Handle,value);
     }
@@ -56,7 +55,7 @@ public class NCAxis
         plc.TcADS.WriteAny(btestValue3Handle,value);
     }
 
-    public ushort ReadValue1(PLC plc)
+    public ushort ReadValue1(PLC plc) // read value from PLC
     {
         try
         {
@@ -65,7 +64,7 @@ public class NCAxis
         }
         catch
         {
-            return 0;
+            return 0; // if error, return 0
         }
     }
 
@@ -78,7 +77,7 @@ public class NCAxis
         }
         catch
         {
-            return 0;
+            return 0; // if error, return 0
         }
     }
 

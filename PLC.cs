@@ -5,6 +5,8 @@ using TwinCAT.Ads;
 
 public class PLC 
 {
+
+    // removing all private ADS client stuff FOR NOW
     /*
     private AdsClient _tcADS = new AdsClient();
     public AdsClient TcADS
@@ -44,8 +46,6 @@ public class PLC
             try
             {
                 TcADS.Connect(AMSID, port);
-                //uint bTestABChandle = TcADS.CreateVariableHandle("GVL_Vars.testABC");
-                //System.Console.WriteLine("created variable handles successfully");
             }
             catch
             {
@@ -54,6 +54,7 @@ public class PLC
             }      
     }
 
+    // removing all ADS state functions FOR NOW
     /*
     
     public bool checkConnection()
